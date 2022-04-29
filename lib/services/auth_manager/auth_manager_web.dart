@@ -57,6 +57,8 @@ class AuthManagerWeb extends AuthManager {
 
       publicClientApplication.setActiveAccount(silentResult.account);
 
+      print("A555: silent accessToken:${silentResult.accessToken}");
+
       return silentResult.accessToken;
     } on InteractionRequiredAuthException{
       try{
@@ -68,7 +70,7 @@ class AuthManagerWeb extends AuthManager {
         publicClientApplication.setActiveAccount(interactiveResult.account);
 
         //TODO: Give message that accessToken just refreshed.
-
+        print("A555: interactive accessToken:${interactiveResult.accessToken}");
         return interactiveResult.accessToken;
       } on AuthException catch (exception){
         print("AuthManagerWeb.getAccessToken(): interactive exception = $exception");

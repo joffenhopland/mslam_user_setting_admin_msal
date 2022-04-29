@@ -28,10 +28,12 @@ class MyApp extends StatefulWidget{
 
 class _MyAppState extends State<MyApp>{
   @override
-  void initState() {
+  void initState(){
     super.initState();
     String? accessToken;
     AuthManager.instance?.getAccessToken().then((value) => accessToken = value);
+
+
     print('accessToken instance: ${AuthManager.instance}');
     print('accessToken: $accessToken');
   }
