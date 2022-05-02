@@ -55,9 +55,15 @@ class AuthManagerWeb extends AuthManager {
 
       final AuthenticationResult silentResult = await publicClientApplication.acquireTokenSilent(silentRequest);
 
+      final silentRequestCustomApi = SilentRequest()..scopes = [ "api://92ebb507-4d16-40c8-b52e-85f0f2086cbf/settings.save.user" ];
+
+      final AuthenticationResult customApiToken = await publicClientApplication.acquireTokenSilent(silentRequestCustomApi);
+
       publicClientApplication.setActiveAccount(silentResult.account);
 
       print("A555: silent accessToken:${silentResult.accessToken}");
+      print("A555: silent customApiToken:${customApiToken.accessToken}");
+
 
       return silentResult.accessToken;
     } on InteractionRequiredAuthException{
